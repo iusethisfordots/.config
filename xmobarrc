@@ -1,0 +1,32 @@
+Config { font = "xft:Rubik-Regular.ttf:size=10:bold:antialias=true,Font Awesome 6 Free Solid:style=solid:size=9" 
+       , additionalFonts = []
+       , borderColor = "#000000"
+       , border = TopB
+       , bgColor = "#0c1115"
+       , fgColor = "#ffffff"
+       , alpha = 0
+       , position = Top
+       , textOffset = -1
+       , iconOffset = -1
+       , lowerOnStart = True
+       , pickBroadest = False
+       , persistent = False
+       , hideOnStart = False
+       , iconRoot = "."
+       , allDesktops = True
+       , overrideRedirect = True
+       , commands = [ Run Cpu ["-L","3","-H","50",
+                               "--normal","green","--high","red"] 10
+
+                    , Run StdinReader
+
+                    , Run Memory ["-t","RAM: <used>-<usedratio>%"] 10
+       
+                    , Run CoreTemp ["-t", "Temp:<core0>C",  "-L", "40", "-H", "60","-l", "lightblue", "-n", "gray90", "-h", "red"] 50  
+                 
+                     , Run Date "<box type=Bottom width=2 mb=2 color=#51afef>  %a %_d %b</box>       <box type=Bottom width=2 mb=2 color=#51afef>  %H:%M</box>" "date" 10
+                     ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = " <fc=#ffffff>    %StdinReader%  </fc>}  {   <box type=Bottom width=2 mb=2 color=#51afef> %cpu%</box>       <box type=Bottom width=2 mb=2 color=#51afef>  %coretemp%</box>       <box type=Bottom width=2 mb=2 color=#51afef>  %memory%</box>       %date%  "
+       }
